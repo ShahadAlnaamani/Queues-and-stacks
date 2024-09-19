@@ -307,84 +307,90 @@ namespace Queues_and_stacks
         static public void Order()
         {
             Console.WriteLine("\n\n\nO R D E R   U S I N G   S T A C K S");
+            Console.WriteLine("4 digit max");
             Console.Write("Enter: ");
             string Sequence = Console.ReadLine();
 
-            Stack<int> Initial = new Stack<int>();
-            Stack<int> Ordered = new Stack<int>();
-            bool Sorted = false;
-
-            foreach (var part in Sequence)
+            if (Sequence.Count() < 5)
             {
-                Initial.Push(int.Parse(part.ToString()));
-            }
+                Stack<int> Initial = new Stack<int>();
+                Stack<int> Ordered = new Stack<int>();
+                bool Sorted = false;
 
-            int Value1;
-            int Value2 = 0;
-            int Counter;
-            int Total;
-            Value1 = Initial.Pop();
-
-            do
-            {
-                Sorted = false;
-                Counter = Initial.Count;
-                Total = Initial.Count();
-                while (Initial.Count() > 0)
+                foreach (var part in Sequence)
                 {
-                    Value2 = Initial.Pop();
+                    Initial.Push(int.Parse(part.ToString()));
+                }
 
-                    if (Value1 < Value2)
+                int Value1;
+                int Value2 = 0;
+                int Counter;
+                int Total;
+                Value1 = Initial.Pop();
+
+                do
+                {
+                    Sorted = false;
+                    Counter = Initial.Count;
+                    Total = Initial.Count();
+                    while (Initial.Count() > 0)
                     {
-                        Ordered.Push(Value1);
-                        // Ordered.Push(Value2);
+                        Value2 = Initial.Pop();
 
-                        if (Initial.Count() > 0)
-                        {
-                            Value1 = Value2;
-                        }
-
-                        else 
-                        {
-                            Ordered.Push(Value2);
-                        }
-                        
-                    }
-
-                    else
-                    {
-                        Ordered.Push(Value2);
-                        //Ordered.Push(Value1);
-                        //Value1 = Value2;
-                        Counter--;
-
-                        if (Initial.Count() == 0)
+                        if (Value1 < Value2)
                         {
                             Ordered.Push(Value1);
+                            // Ordered.Push(Value2);
+
+                            if (Initial.Count() > 0)
+                            {
+                                Value1 = Value2;
+                            }
+
+                            else
+                            {
+                                Ordered.Push(Value2);
+                            }
+
+                        }
+
+                        else
+                        {
+                            Ordered.Push(Value2);
+                            //Ordered.Push(Value1);
+                            //Value1 = Value2;
+                            Counter--;
+
+                            if (Initial.Count() == 0)
+                            {
+                                Ordered.Push(Value1);
+                            }
                         }
                     }
-                }
 
-                if (Counter == Total)
+                    if (Counter == Total)
+                    {
+                        Sorted = true;
+                    }
+
+                } while (Sorted != true);
+
+
+                Initial.Clear();
+
+                foreach (var part in Ordered)
                 {
-                    Sorted = true;
+                    Initial.Push(part);
                 }
 
-            } while (Sorted != true);
-
-            
-            Initial.Clear();
-
-            foreach (var part in Ordered)
-            {
-                Initial.Push(part);
+                Console.Write("\nSorted: ");
+                foreach (var part in Initial)
+                {
+                    Console.Write(part);
+                }
             }
 
-            Console.Write("\nSorted: ");
-            foreach (var part in Initial)
-            {
-                Console.Write(part);
-            }
+            else { Console.WriteLine("Too many digits :O"); }
         }
     }
 }

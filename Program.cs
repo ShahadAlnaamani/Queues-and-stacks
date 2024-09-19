@@ -6,10 +6,14 @@
         {
             Console.WriteLine("Q U E U E S   A N D   S T A C K S");
             Postfix();
+            Reverse();
+            CheckBrackets();
         }
 
+        //Calculates postfix 
         static public void Postfix()
         {
+            Console.WriteLine("POSTFIX CALCULATIONS");
             Stack<int> PostFixStack = new Stack<int>();
             List<string> PInput = new List<string>(); //Added list so later can add functions for user input 
 
@@ -76,6 +80,69 @@
             }
             foreach (var number in PostFixStack)
             { Console.WriteLine(number); }
+        }
+
+
+        //Reverses strings
+        static public void Reverse()
+        {
+            Stack<string> ReverseStack = new Stack<string>();
+            Console.WriteLine("\n\n\nSTRING REVERSING");
+            Console.Write("\nEnter string: ");
+            string Input = Console.ReadLine();
+
+            foreach (char letter in Input)
+            {
+                ReverseStack.Push(letter.ToString());
+            }
+
+            foreach (string L in ReverseStack)
+            {
+                Console.WriteLine(L);
+            }
+        }
+
+
+        //Checks if brackets are balanced 
+        static public void CheckBrackets()
+        {
+            Console.WriteLine("\n B R A C K E T   C H E C K E R ");
+            Console.Write("\nEnter string: ");
+            string UserInput = Console.ReadLine();
+
+            Stack<string> Brackets = new Stack<string>();
+            int OpenBracketCounter = 0;
+            int CloseBracketCounter = 0;
+
+            foreach (char i in UserInput)
+            {
+                Brackets.Push(i.ToString());
+            }
+
+            foreach (string i in Brackets)
+            {
+                string part = Brackets.Pop();
+
+                if (part == "(")
+                {
+                    OpenBracketCounter++;
+                }
+
+                else if (part == ")")
+                {
+                    CloseBracketCounter++;
+                }
+            }
+
+            if (OpenBracketCounter == CloseBracketCounter)
+            {
+                Console.WriteLine("Balanced");
+
+            }
+            else 
+            {
+                Console.WriteLine("Not Balanced");
+            }
         }
     }
 }

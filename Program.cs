@@ -1,4 +1,6 @@
-﻿namespace Queues_and_stacks
+﻿using System.Globalization;
+
+namespace Queues_and_stacks
 {
     internal class Program
     {
@@ -9,6 +11,7 @@
             Reverse();
             CheckBrackets();
             MaxFinder();
+            Order();
         }
 
         //Calculates postfix 
@@ -18,15 +21,20 @@
             Stack<int> PostFixStack = new Stack<int>();
             List<string> PInput = new List<string>(); //Added list so later can add functions for user input 
 
-            PInput.Add("5"); //Adding numbers manually for now 
-            PInput.Add("1");
-            PInput.Add("2");
-            PInput.Add("+");
-            PInput.Add("4");
-            PInput.Add("*");
-            PInput.Add("+");
-            PInput.Add("3");
-            PInput.Add("-");
+            Console.Write("Enter: ");
+            string Input = Console.ReadLine();
+            
+            foreach (char A in Input)
+            {
+                if (A == ' ') { }
+
+                else
+                {
+                    PInput.Add(A.ToString());
+                }
+            }
+
+
             for (int i = 0; i< PInput.Count(); i++) 
             {
                 try //checking if number will push to stack
@@ -213,6 +221,23 @@
                 catch { }; //ignores any non int values 
             }
             Console.WriteLine("This maximum was found using Max(); -> " + Max);
+        }
+
+
+        //BONUS - Sort into ascending order only using stacks
+        static public void Order()
+        {
+            Console.WriteLine("\n\n\nO R D E R   U S I N G   S T A C K S");
+            Console.Write("Enter: ");
+            string Sequence = Console.ReadLine();
+
+            Stack <string> Initial = new Stack<string>();  
+            Stack<string> Ordered = new Stack<string> ();
+
+            foreach (var part in Sequence ) 
+            {
+                //Initial.Push(part);
+            }
         }
     }
 }

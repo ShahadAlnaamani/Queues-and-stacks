@@ -96,9 +96,11 @@
                 ReverseStack.Push(letter.ToString());
             }
 
+            Console.Write("\nReversed: ");
+
             foreach (string L in ReverseStack)
             {
-                Console.WriteLine(L);
+                Console.Write(L);
             }
         }
 
@@ -106,7 +108,7 @@
         //Checks if brackets are balanced 
         static public void CheckBrackets()
         {
-            Console.WriteLine("\n B R A C K E T   C H E C K E R ");
+            Console.WriteLine("\n\n\n B R A C K E T   C H E C K E R ");
             Console.Write("\nEnter string: ");
             string UserInput = Console.ReadLine();
 
@@ -114,12 +116,12 @@
             int OpenBracketCounter = 0;
             int CloseBracketCounter = 0;
 
-            foreach (char i in UserInput)
+            foreach (char i in UserInput)//Adding values individually to stack 
             {
                 Brackets.Push(i.ToString());
             }
 
-            foreach (string i in Brackets)
+            while (Brackets.Count() > 0)
             {
                 string part = Brackets.Pop();
 
@@ -139,10 +141,11 @@
                 Console.WriteLine("Balanced");
 
             }
-            else 
+            else
             {
                 Console.WriteLine("Not Balanced");
             }
+
         }
     }
 }

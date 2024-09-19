@@ -13,7 +13,8 @@ namespace Queues_and_stacks
             //CheckBrackets();
             //MaxFinder();
             //Order();
-            ReversingQ();
+           // ReversingQ();
+            IsPalindrome();
         }
 
         //Calculates postfix 
@@ -226,6 +227,81 @@ namespace Queues_and_stacks
         }
 
 
+        //Reverse string of int using stacks and queues
+        public static void ReversingQ()
+        {
+            Console.WriteLine("\n\n\nR E V E R S I N G   U S I N G   Q U E U E S");
+            Console.Write("Enter string: ");
+            string ToBeReversed = Console.ReadLine();
+            Queue<int> Q1 = new Queue<int>();
+            Queue<int> Q2 = new Queue<int>();
+
+            foreach (char A in ToBeReversed)
+            {
+                try
+                {
+                    Q1.Enqueue(int.Parse(A.ToString()));
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+            }
+
+            //Reversing the order 
+            while (Q1.Count > 0)
+            {
+                Q2.Enqueue(Q1.Dequeue());
+            }
+
+            Console.Write("\nReversed: ");
+            foreach (int i in Q2)
+            {
+                Console.Write(i);
+            }
+            Console.WriteLine();
+        }
+
+
+        //Palindrome checker using queues 
+        public static void IsPalindrome()
+        {
+            Console.WriteLine("\n\n\nP A L I N D R O M E   C H E C K E R");
+            Console.Write("Enter: ");
+            string Input = Console.ReadLine();
+
+            bool Palindrome = true;
+            string X;
+            string Y;
+            Queue <string> Q1 = new Queue<string>(); //String going forward
+            Stack<string> S1 = new Stack<string>(); //String going backward
+
+
+            //Adding variables to first queue 
+            foreach(char A in Input)
+            {
+                Q1.Enqueue(A.ToString());
+            }
+
+            //Adding everything in reverse order 
+            foreach (char B in Input)
+            {
+                S1.Push(B.ToString());
+            }
+
+            while (Q1.Count != 0)
+            {
+                X = Q1.Dequeue();   
+                Y = S1.Pop();
+
+                if (X != Y)
+                { 
+                    Palindrome = false;
+                }
+            }
+
+            Console.WriteLine("Is palindrome: " + Palindrome);
+        }
+
+
+
         ////BONUS - Sort into ascending order only using stacks
         //static public void Order()
         //{
@@ -290,35 +366,6 @@ namespace Queues_and_stacks
         //}
 
 
-        //Reverse string of int using stacks and queues
-        public static void ReversingQ()
-        {
-            Console.WriteLine("\n\n\nR E V E R S I N G   U S I N G   Q U E U E S");
-            Console.Write("Enter string: ");
-            string ToBeReversed = Console.ReadLine();
-            Queue <int> Q1 = new Queue <int>();
-            Queue<int> Q2 = new Queue<int>();
-            
-            foreach (char A in ToBeReversed)
-            {
-                try
-                {
-                    Q1.Enqueue(int.Parse(A.ToString()));
-                }catch(Exception ex) {  Console.WriteLine(ex.Message); }
-            }
 
-            //Reversing the order 
-            while (Q1.Count > 0)
-            {
-                Q2.Enqueue(Q1.Dequeue());
-            }
-
-            Console.Write("\nReversed: ");
-            foreach(int i in Q2) 
-            {
-                Console.Write(i);
-            }
-            Console.WriteLine();
-        }
     }
 }

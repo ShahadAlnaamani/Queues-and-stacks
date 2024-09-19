@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.ComponentModel.Design;
 using System.Globalization;
 
 namespace Queues_and_stacks
@@ -12,9 +13,9 @@ namespace Queues_and_stacks
             //Reverse();
             //CheckBrackets();
             //MaxFinder();
-            //Order();
+            Order();
            // ReversingQ();
-            IsPalindrome();
+            //IsPalindrome();
         }
 
         //Calculates postfix 
@@ -303,69 +304,87 @@ namespace Queues_and_stacks
 
 
         ////BONUS - Sort into ascending order only using stacks
-        //static public void Order()
-        //{
-        //    Console.WriteLine("\n\n\nO R D E R   U S I N G   S T A C K S");
-        //    Console.Write("Enter: ");
-        //    string Sequence = Console.ReadLine();
+        static public void Order()
+        {
+            Console.WriteLine("\n\n\nO R D E R   U S I N G   S T A C K S");
+            Console.Write("Enter: ");
+            string Sequence = Console.ReadLine();
 
-        //    Stack <int> Initial = new Stack<int>();  
-        //    Stack<int> Ordered = new Stack<int> ();
-        //    bool Sorted = false;
+            Stack<int> Initial = new Stack<int>();
+            Stack<int> Ordered = new Stack<int>();
+            bool Sorted = false;
 
-        //    foreach (var part in Sequence) 
-        //    {
-        //        Initial.Push(part);
-        //    }
+            foreach (var part in Sequence)
+            {
+                Initial.Push(int.Parse(part.ToString()));
+            }
 
-        //    int Value1;
-        //    int Value2;
-        //    int Counter;
-        //    int Total = Initial.Count();
-        //    Value1 = Initial.Pop();
+            int Value1;
+            int Value2 = 0;
+            int Counter;
+            int Total;
+            Value1 = Initial.Pop();
 
-        //    Value1 = int.Parse(Value1);
+            do
+            {
+                Sorted = false;
+                Counter = Initial.Count;
+                Total = Initial.Count();
+                while (Initial.Count() > 0)
+                {
+                    Value2 = Initial.Pop();
 
-        //    do
-        //    {
-        //        Sorted = false;
-        //        Counter = Initial.Count;
-        //        while (Initial.Count() > 0)
-        //        {
-        //            Value2 = Initial.Pop();
-        //            Value2 = int.Parse(Value2);
+                    if (Value1 < Value2)
+                    {
+                        Ordered.Push(Value1);
+                        // Ordered.Push(Value2);
 
-        //            if (Value1 < Value2)
-        //            {
-        //                Ordered.Push(Value1); 
-        //                Ordered.Push(Value2);
-        //                Value1 = Value2;
-        //            }
+                        if (Initial.Count() > 0)
+                        {
+                            Value1 = Value2;
+                        }
 
-        //            else 
-        //            {
-        //                Ordered.Push(Value2); 
-        //                Ordered.Push(Value1);
-        //                Value1 = Value2;
-        //                Counter--;
-        //            }
+                        else 
+                        {
+                            Ordered.Push(Value2);
+                        }
+                        
+                    }
 
-        //        }
+                    else
+                    {
+                        Ordered.Push(Value2);
+                        //Ordered.Push(Value1);
+                        //Value1 = Value2;
+                        Counter--;
 
-        //        if (Counter == Total)
-        //        {
-        //            Sorted = true;
-        //        }
+                        if (Initial.Count() == 0)
+                        {
+                            Ordered.Push(Value1);
+                        }
+                    }
+                }
 
-        //    }while (Sorted != true);
+                if (Counter == Total)
+                {
+                    Sorted = true;
+                }
 
-        //    foreach (var part in Ordered)
-        //    {
-        //        Console.WriteLine(part);
-        //    }
-        //}
+            } while (Sorted != true);
 
+            
+            Initial.Clear();
 
+            foreach (var part in Ordered)
+            {
+                Initial.Push(part);
+            }
 
+            Console.Write("\nSorted: ");
+            foreach (var part in Initial)
+            {
+                Console.Write(part);
+            }
+        }
     }
 }

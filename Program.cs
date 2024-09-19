@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Collections.Immutable;
+using System.Globalization;
 
 namespace Queues_and_stacks
 {
@@ -7,11 +8,12 @@ namespace Queues_and_stacks
         static void Main(string[] args)
         {
             Console.WriteLine("Q U E U E S   A N D   S T A C K S");
-            Postfix();
-            Reverse();
-            CheckBrackets();
-            MaxFinder();
-            Order();
+            //Postfix();
+            //Reverse();
+            //CheckBrackets();
+            //MaxFinder();
+            //Order();
+            ReversingQ();
         }
 
         //Calculates postfix 
@@ -224,20 +226,96 @@ namespace Queues_and_stacks
         }
 
 
-        //BONUS - Sort into ascending order only using stacks
-        static public void Order()
+        ////BONUS - Sort into ascending order only using stacks
+        //static public void Order()
+        //{
+        //    Console.WriteLine("\n\n\nO R D E R   U S I N G   S T A C K S");
+        //    Console.Write("Enter: ");
+        //    string Sequence = Console.ReadLine();
+
+        //    Stack <int> Initial = new Stack<int>();  
+        //    Stack<int> Ordered = new Stack<int> ();
+        //    bool Sorted = false;
+
+        //    foreach (var part in Sequence) 
+        //    {
+        //        Initial.Push(part);
+        //    }
+
+        //    int Value1;
+        //    int Value2;
+        //    int Counter;
+        //    int Total = Initial.Count();
+        //    Value1 = Initial.Pop();
+
+        //    Value1 = int.Parse(Value1);
+
+        //    do
+        //    {
+        //        Sorted = false;
+        //        Counter = Initial.Count;
+        //        while (Initial.Count() > 0)
+        //        {
+        //            Value2 = Initial.Pop();
+        //            Value2 = int.Parse(Value2);
+
+        //            if (Value1 < Value2)
+        //            {
+        //                Ordered.Push(Value1); 
+        //                Ordered.Push(Value2);
+        //                Value1 = Value2;
+        //            }
+
+        //            else 
+        //            {
+        //                Ordered.Push(Value2); 
+        //                Ordered.Push(Value1);
+        //                Value1 = Value2;
+        //                Counter--;
+        //            }
+
+        //        }
+
+        //        if (Counter == Total)
+        //        {
+        //            Sorted = true;
+        //        }
+
+        //    }while (Sorted != true);
+
+        //    foreach (var part in Ordered)
+        //    {
+        //        Console.WriteLine(part);
+        //    }
+        //}
+
+
+        //Reverse string of int using stacks and queues
+        public static void ReversingQ()
         {
-            Console.WriteLine("\n\n\nO R D E R   U S I N G   S T A C K S");
-            Console.Write("Enter: ");
-            string Sequence = Console.ReadLine();
-
-            Stack <string> Initial = new Stack<string>();  
-            Stack<string> Ordered = new Stack<string> ();
-
-            foreach (var part in Sequence ) 
+            Console.WriteLine("\n\n\nR E V E R S I N G   U S I N G   Q U E U E S");
+            Console.Write("Enter string: ");
+            string ToBeReversed = Console.ReadLine();
+            Queue <int> Q1 = new Queue <int>();
+            Queue<int> Q2 = new Queue<int>();
+            
+            foreach (char A in ToBeReversed)
             {
-                //Initial.Push(part);
+                Q1.Enqueue(int.Parse(A.ToString()));
             }
+
+            //Reversing the order 
+            while (Q1.Count > 0)
+            {
+                Q2.Enqueue(Q1.Dequeue());
+            }
+
+            Console.Write("\nReversed: ");
+            foreach(int i in Q2) 
+            {
+                Console.Write(i);
+            }
+            Console.WriteLine();
         }
     }
 }

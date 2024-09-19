@@ -301,7 +301,10 @@ namespace Queues_and_stacks
             
             foreach (char A in ToBeReversed)
             {
-                Q1.Enqueue(int.Parse(A.ToString()));
+                try
+                {
+                    Q1.Enqueue(int.Parse(A.ToString()));
+                }catch(Exception ex) {  Console.WriteLine(ex.Message); }
             }
 
             //Reversing the order 

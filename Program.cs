@@ -8,6 +8,7 @@
             Postfix();
             Reverse();
             CheckBrackets();
+            MaxFinder();
         }
 
         //Calculates postfix 
@@ -144,6 +145,47 @@
             else
             {
                 Console.WriteLine("Not Balanced");
+            }
+
+        }
+
+
+        //Find maximum element of stack 
+        static public void MaxFinder()
+        {
+            Stack<string> Elements = new Stack<string>();
+
+            Console.WriteLine("\n\n\nM A X   E L E M E N T   F I N D E R");
+            Console.Write("Enter elements: ");
+            string ElementString = Console.ReadLine();
+            int HighestNumber = 0;
+
+            foreach (char i in ElementString)//Adding values individually to stack 
+            {
+                try
+                {//Checking if it is a number 
+                    int number = int.Parse(i.ToString());
+                    
+                    if (number > HighestNumber) //Keeping track of highest number 
+                    {
+                        HighestNumber = number;
+                    }
+
+                    Elements.Push(i.ToString());
+                }
+                catch
+                {
+                    Elements.Push(i.ToString()); //Adding anything that is not an int
+                }
+            }
+
+            if (HighestNumber != 0)
+            {
+                Console.WriteLine("The highest element is: " + HighestNumber);
+            }
+            else 
+            { 
+                Console.WriteLine("There were no numbers in the given input :)");
             }
 
         }

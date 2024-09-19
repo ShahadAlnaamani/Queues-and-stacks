@@ -136,15 +136,21 @@
                     CloseBracketCounter++;
                 }
             }
-
-            if (OpenBracketCounter == CloseBracketCounter)
+            if (OpenBracketCounter > 0 && CloseBracketCounter > 0) //Checking that there are brackets 
             {
-                Console.WriteLine("Balanced");
+                if (OpenBracketCounter == CloseBracketCounter)
+                {
+                    Console.WriteLine("Balanced");
 
+                }
+                else
+                {
+                    Console.WriteLine("Not Balanced");
+                }
             }
-            else
+            else 
             {
-                Console.WriteLine("Not Balanced");
+                Console.WriteLine("String did not have any brackets");
             }
 
         }

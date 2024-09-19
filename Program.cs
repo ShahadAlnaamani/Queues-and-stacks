@@ -88,7 +88,7 @@
         static public void Reverse()
         {
             Stack<string> ReverseStack = new Stack<string>();
-            Console.WriteLine("\n\n\nSTRING REVERSING");
+            Console.WriteLine("\n\n\nS T R I N G   R E V E R S I N G");
             Console.Write("\nEnter string: ");
             string Input = Console.ReadLine();
 

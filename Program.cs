@@ -160,6 +160,7 @@
             string ElementString = Console.ReadLine();
             int HighestNumber = 0;
 
+            //Finding without using Max();
             foreach (char i in ElementString)//Adding values individually to stack 
             {
                 try
@@ -188,6 +189,24 @@
                 Console.WriteLine("There were no numbers in the given input :)");
             }
 
+
+            //Using Max();
+            int Max = 0; 
+            while (Elements.Count() > 0)
+            {
+                string part = Elements.Pop();
+
+                try
+                {
+                    int Part = int.Parse(part);
+                    if (Part > Max)
+                    {
+                        Max = Part;
+                    }
+                }
+                catch { }; //ignores any non int values 
+            }
+            Console.WriteLine("This maximum was found using Max(); -> " + Max);
         }
     }
 }
